@@ -1,0 +1,129 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { FigmaCanvas } from "../ui/FigmaCanvas";
+import { InstagramIcon, WhatsAppIcon } from "../ui/icons";
+import { contactInfo } from "@/lib/data";
+
+const img = (name: string) => `/imagenes/figma/cta-${name}.png`;
+
+export function ContactBlock() {
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Nuevo proyecto de ${nombre || "un cliente"}`);
+    const body = encodeURIComponent(
+      `Nombre: ${nombre}\nEmail: ${email}\n\n${mensaje}`
+    );
+    window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
+  };
+
+  return (
+    <section id="contacto" className="bg-[#fcf8f4] relative overflow-hidden">
+      <FigmaCanvas width={1920} height={1365}>
+        {/* Tarjeta introductoria */}
+        <div
+          className="absolute flex flex-col gap-[64px] items-center justify-center text-center bg-cream-card text-forest-muted p-[21px]"
+          style={{ left: 215, top: 345, width: 668, height: 285, boxShadow: "0px 4px 2px rgba(0,0,0,0.25)" }}
+        >
+          <p className="font-caveat text-[48px] leading-tight">¿Te gustaría trabajar conmigo?</p>
+          <p className="font-caveat text-[48px] leading-tight">Dejame un mensaje contandome la visión de tu idea</p>
+        </div>
+        <div className="absolute overflow-hidden pointer-events-none" style={{ left: 568, top: 265, width: 67, height: 76 }}>
+          <Image src={img("pushpin")} alt="" width={307} height={304} className="absolute max-w-none" style={{ left: "-43.12%", top: "-150.4%", width: "458.72%", height: "400%" }} />
+        </div>
+        <div className="absolute overflow-hidden pointer-events-none" style={{ left: 564, top: 716, width: 67, height: 76 }}>
+          <Image src={img("pushpin")} alt="" width={307} height={304} className="absolute max-w-none" style={{ left: "-148.07%", top: "-42.48%", width: "458.72%", height: "400%" }} />
+        </div>
+
+        {/* Panel Conectemonos */}
+        <div
+          className="absolute flex flex-col gap-[32px] items-center justify-center bg-terracotta rounded-lg px-[32px] py-[21px]"
+          style={{ left: 288, top: 772, width: 537, height: 197, boxShadow: "0px 4px 2px rgba(0,0,0,0.25)" }}
+        >
+          <p className="font-caveat text-[48px] text-paper text-center">¡Conectemonos!</p>
+          <div className="flex items-center justify-center gap-[21px]">
+            <a href={`https://instagram.com/${contactInfo.instagram}`} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex items-center justify-center rounded-full bg-paper text-terracotta hover:scale-110 transition-transform" style={{ width: 64, height: 64 }}>
+              <InstagramIcon className="size-8" />
+            </a>
+            <a href={`https://wa.me/${contactInfo.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex items-center justify-center rounded-full bg-paper text-terracotta hover:scale-110 transition-transform" style={{ width: 64, height: 64 }}>
+              <WhatsAppIcon className="size-8" />
+            </a>
+          </div>
+        </div>
+
+        {/* Formulario */}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            required
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            placeholder="Nombre *"
+            className="absolute bg-cream-card border-b-4 border-terracotta font-itim text-[21px] text-terracotta text-center placeholder:text-terracotta/70 px-[21px] outline-none"
+            style={{ left: 1035, top: 351, width: 660, height: 76 }}
+          />
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email *"
+            className="absolute bg-cream-card border-b-4 border-terracotta font-itim text-[21px] text-terracotta text-center placeholder:text-terracotta/70 px-[21px] outline-none"
+            style={{ left: 1035, top: 491, width: 660, height: 76 }}
+          />
+          <textarea
+            required
+            value={mensaje}
+            onChange={(e) => setMensaje(e.target.value)}
+            placeholder="Tu idea va aquí (mensaje)"
+            className="absolute bg-cream-card border-b-4 border-terracotta font-itim text-[21px] text-terracotta text-center placeholder:text-terracotta/70 px-[21px] pt-[21px] outline-none resize-none"
+            style={{ left: 1035, top: 631, width: 660, height: 180 }}
+          />
+          <button
+            type="submit"
+            className="absolute bg-terracotta font-caveat font-bold text-paper hover:bg-terracotta-hover transition-colors"
+            style={{ left: 1035, top: 885, width: 660, height: 84, fontSize: 32 }}
+          >
+            ¡Hagamos que esa visión cobra vida!
+          </button>
+        </form>
+
+        {/* Cintas washi (recorte tipo sprite del mismo asset) */}
+        {[
+          { left: 1647, top: 380, size: 85, rotate: -50.56 },
+          { left: 1640, top: 536, size: 85, rotate: -50.56 },
+          { left: 997, top: 600, size: 85, rotate: -50.56 },
+        ].map((t, i) => (
+          <div key={`washi-a-${i}`} className="absolute overflow-hidden pointer-events-none" style={{ left: t.left, top: t.top, width: t.size, height: t.size * 1.09, transform: `rotate(${t.rotate}deg)` }}>
+            <Image src={img("washi-tape")} alt="" width={267} height={231} className="absolute max-w-none" style={{ left: "-180.57%", top: "-314.33%", width: "311.39%", height: "894.83%" }} />
+          </div>
+        ))}
+        {[
+          { left: 984, top: 304, rotate: -50.66 },
+          { left: 980, top: 444, rotate: -50.66 },
+          { left: 1629, top: 753, rotate: 129.34 },
+        ].map((t, i) => (
+          <div key={`washi-b-${i}`} className="absolute overflow-hidden pointer-events-none" style={{ left: t.left, top: t.top, width: 103, height: 113, transform: `rotate(${t.rotate}deg)` }}>
+            <Image src={img("washi-tape")} alt="" width={247} height={220} className="absolute max-w-none" style={{ left: "-112%", top: "-37.93%", width: "240.5%", height: "894.83%" }} />
+          </div>
+        ))}
+
+        {/* Collage decorativo */}
+        <Image src={img("image38")} alt="" width={165} height={192} className="absolute pointer-events-none select-none" style={{ left: 271, top: 669 }} />
+        <Image src={img("image47")} alt="" width={157} height={169} className="absolute pointer-events-none select-none" style={{ left: 1532, top: 211 }} />
+        <Image src={img("image48")} alt="" width={164} height={175} className="absolute pointer-events-none select-none" style={{ left: 816, top: 549 }} />
+        <Image src={img("image49")} alt="" width={169} height={117} className="absolute pointer-events-none select-none" style={{ left: 259, top: 1021 }} />
+        <Image src={img("image50")} alt="" width={232} height={472} className="absolute pointer-events-none select-none" style={{ left: 1373, top: 960, transform: "rotate(75.45deg)" }} />
+        <Image src={img("image51")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 708, top: 980 }} />
+        <Image src={img("image51")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 833, top: 857 }} />
+        <Image src={img("image51")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 816, top: 961 }} />
+        <Image src={img("image40")} alt="" width={217} height={89} className="absolute pointer-events-none select-none" style={{ left: 1180, top: 548 }} />
+      </FigmaCanvas>
+    </section>
+  );
+}

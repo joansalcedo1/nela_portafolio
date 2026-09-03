@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
+@theme {
+  /* Mantengo tus colores base y de textura */
+  --color-bg-base: #F9F6F4;
+  --color-paper: #D6C5AB;
+  
+  /* Tus colores de texto */
+  --color-ink: #202020;
+  --color-ink-dark: #2A2B26;
+
+  /* Colores de Acento Originales */
+  --color-accent-primary: #49C5B6;
+  --color-accent-secondary: #ECD06F;
+  --color-surface: #E9B9A0;
+
+  /* NUEVA PALETA: Botánica (Verdes) */
+  --color-forest: #153C16;
+  --color-forest-muted: #495D51;
+
+  /* NUEVA PALETA: Acción (Terracota) */
+  --color-terracotta: #8B3A2B;
+  --color-terracotta-hover: #6E2D22;
+  --color-terracotta-selected: #4A1E17;
+
+  /* Figma: fondo de skill-cards y campos de formulario */
+  --color-cream-card: #F4E1C6;
+
+  --font-itim: var(--font-itim);
+  --font-caveat: var(--font-caveat);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  background-color: var(--color-bg-base);
+  color: var(--color-ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-base);
+  /* Textura sutil simulando papel */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Scrollbar styling for a nicer feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-primary);
 }
