@@ -12,6 +12,24 @@ const functions = [
   { name: "Utilería", image: "utileria.png", left: 1211, tone: "paper" },
 ];
 
+const supportPhotos = [
+  {
+    src: practiceImage("foto-apoyo.png"),
+    alt: "Equipo trabajando en una producción audiovisual",
+    left: 583,
+  },
+  {
+    src: "/imagenes/figma/retos/foto-set.png",
+    alt: "Preparación de un set para una producción",
+    left: 821,
+  },
+  {
+    src: "/imagenes/figma/projects-photo-bichiyali.png",
+    alt: "Referencias y materiales organizados para producción",
+    left: 1059,
+  },
+];
+
 export function PracticeExperience() {
   return (
     <section id="experiencia" className="relative bg-bg-base overflow-x-clip">
@@ -56,13 +74,19 @@ export function PracticeExperience() {
           En este proyecto asumí el rol de directora de arte, trabajando en la construcción visual de los personajes y de los espacios destinados a las entrevistas.
         </p>
 
-        <Image
-          src={practiceImage("foto-apoyo.png")}
-          alt="Rodaje de una producción audiovisual"
-          width={399}
-          height={224}
-          className="absolute left-[591px] top-[568px] h-[224px] w-[399px] object-cover"
-        />
+        {supportPhotos.map((photo) => (
+          <Image
+            key={photo.src}
+            src={photo.src}
+            alt={photo.alt}
+            width={225}
+            height={150}
+            quality={90}
+            sizes="225px"
+            className="absolute top-[568px] h-[150px] w-[225px] rounded-lg object-cover"
+            style={{ left: photo.left }}
+          />
+        ))}
         <h3 className="absolute left-[583px] top-[809px] font-itim text-[16px] font-normal text-forest-muted">
           Mis funciones
         </h3>
@@ -70,7 +94,7 @@ export function PracticeExperience() {
         {functions.map((item) => (
           <div
             key={item.name}
-            className={`absolute top-[839px] h-[133px] w-[133px] rounded-lg ${item.tone === "terracotta" ? "bg-terracotta" : "bg-cream-card"
+            className={`hover:scale-105 hover:rotate-5 transition-all duration-150 absolute top-[839px] h-[133px] w-[133px] rounded-lg ${item.tone === "terracotta" ? "bg-terracotta" : "bg-cream-card"
               } shadow-[0_4px_2px_rgba(0,0,0,0.25)]`}
             style={{ left: item.left }}
           >
@@ -92,9 +116,9 @@ export function PracticeExperience() {
         </p>
         <Image src={heroImage("image22")} alt="" width={142} height={97} className="absolute left-[899px] top-[164px]" />
         <Image src={heroImage("image26")} alt="" width={112} height={120} className="absolute left-0 top-[427px]" />
-        <Image src={practiceImage("flor-small.png")} alt="" width={26} height={25} className="absolute left-[557px] top-[583px]" />
-        <Image src={practiceImage("flor-small.png")} alt="" width={26} height={25} className="absolute left-[557px] top-[546px]" />
-        <Image src={practiceImage("flor-small.png")} alt="" width={26} height={25} className="absolute left-[597px] top-[534px]" />
+        <Image src={heroImage("estrella")} alt="" width={26} height={25} className="absolute left-[557px] top-[583px]" />
+        <Image src={heroImage("estrella")} alt="" width={26} height={25} className="absolute left-[557px] top-[546px]" />
+        <Image src={heroImage("estrella")} alt="" width={26} height={25} className="absolute left-[597px] top-[534px]" />
       </FigmaCanvas>
     </section>
   );

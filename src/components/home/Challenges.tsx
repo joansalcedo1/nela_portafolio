@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { FigmaCanvas } from "../ui/FigmaCanvas";
 
-const challengeImage = (name: string) => `/imagenes/figma/retos/${name}`;
+const challengeImage = (name: string) => `/imagenes/figma/${name}`;
 
 type Lesson = {
   id: string;
@@ -21,7 +21,7 @@ const lessons: Lesson[] = [
     id: "#01",
     title: "Dinámica profesional de rodaje",
     text: "Uno de mis primeros retos fue adaptarme a una forma de trabajo diferente a la que conocía.\n\nMi experiencia previa venía principalmente de proyectos universitarios y montajes para eventos, por lo que durante la práctica tuve que desarrollar una mirada más atenta a lo que registra la cámara. Aprendí a usar el monitor como herramienta de trabajo y a revisar vestuario, escenografía, utilería y cada detalle del encuadre.",
-    image: challengeImage("foto-set.png"),
+    image: `/imagenes/figma/retos/foto-set.png`,
     imageAlt: "Equipo trabajando durante un rodaje",
     left: 87,
     tone: "cream",
@@ -92,7 +92,7 @@ export function Challenges() {
           Retos y aprendizajes
         </h2>
         <p className="absolute left-[671px] top-[221px] h-[69px] w-[671px] font-itim text-[16px] leading-normal text-forest-muted">
-          Durante mi proceso de práctica profesional en la productora audiovisual autentica, enfrenté retos significativos que me permitieron crecer como directora de arte. Estos desafíos abarcaron tanto el bla bla bla bla comobla bla bla bla y bla bla bla bla.
+          Durante mi proceso de práctica profesional en la productora audiovisual autentica, enfrenté retos significativos que me permitieron crecer como directora de arte.
         </p>
 
         <article
@@ -101,9 +101,8 @@ export function Challenges() {
           aria-live="polite"
           aria-labelledby={`challenge-tab-${activeLesson.id.slice(1)}`}
           tabIndex={0}
-          className={`absolute left-[87px] top-[359px] h-[275px] w-[945px] rounded-tl-xl px-[49px] py-[27px] shadow-[0_6px_19px_rgba(0,0,0,0.25)] ${
-            activeLesson.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"
-          }`}
+          className={`absolute transition-colors duration-300 left-[87px] top-[359px] h-[275px] w-[945px] rounded-tl-xl px-[49px] py-[27px] shadow-[0_6px_19px_rgba(0,0,0,0.25)] ${activeLesson.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"
+            }`}
         >
           <h3 id="challenge-detail-title" className="font-caveat text-[28px] font-bold leading-tight">
             {activeLesson.title}
@@ -123,8 +122,13 @@ export function Challenges() {
           height={186}
           className="absolute left-[1032px] top-[400px] h-[186px] w-[280px] rounded-r-[10px] object-cover"
         />
-        <Image src={challengeImage("camera.png")} alt="" width={203} height={150} className="absolute left-[829px] top-[383px]" />
-
+        {/**IMAGENES CON POSICION ABSOLUTA */}
+        <Image src={challengeImage("retos/colibri.png")} alt="" width={150} height={110} className="absolute left-[320px] bottom-[380px]" />
+        <Image src={challengeImage("cta-image38.png")} alt="" width={110} height={110} className="absolute left-[620px] top-[290px]" />
+        <Image src={challengeImage("hero-image16.png")} alt="" width={110} height={110} className="absolute right-[220px] top-[320px]" />
+       
+       
+       
         <div role="tablist" aria-label="Retos y aprendizajes" className="pointer-events-none absolute inset-0">
           {lessons.map((lesson, index) => {
             const isActive = activeLessonIndex === index;
@@ -142,16 +146,14 @@ export function Challenges() {
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveLessonIndex(index)}
                 onKeyDown={(event) => handleTabKeyDown(event, index)}
-                className={`pointer-events-auto absolute w-[303px] border-0 text-left transition-[top,height,filter] duration-300 ease-out hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-forest-muted ${toneClasses} ${
-                  isActive ? "rounded-t-none rounded-b-xl" : "rounded-xl"
-                }`}
+                className={`pointer-events-auto cursor-pointer absolute w-[303px] border-0 text-left transition-[top,height,filter] duration-300 ease-out hover:brightness-105 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-forest-muted ${toneClasses} ${isActive ? "rounded-t-none rounded-b-xl" : "rounded-xl"
+                  }`}
                 style={{ left: lesson.left, top: isActive ? 634 : 652, height: isActive ? 232 : 214 }}
               >
                 <span className="absolute left-[28px] top-[38px] font-caveat text-[25px] leading-none">{lesson.id}</span>
                 <span className="absolute left-6 top-[86px] flex h-[65px] w-[255px] items-center justify-center text-center font-itim text-[20px] leading-normal">
                   {lesson.title}
                 </span>
-                <span className="absolute bottom-[9px] left-1/2 size-16 -translate-x-1/2 rounded-full bg-[#d9d9d9]" />
               </button>
             );
           })}

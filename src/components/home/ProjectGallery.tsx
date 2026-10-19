@@ -4,12 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { FigmaCanvas } from "../ui/FigmaCanvas";
 
+const projectPhotography = (name: string) => `/projects/${name}.webp`;
+const projectSeal = (name: string) => `/projects/${name}.png`;
+
 const projects = [
-  { title: "Seguimos siendo", body: "Mi experiencia principal durante este periodo ha sido “Seguimos siendo”, una serie desarrollada en colaboración con la Universidad Autónoma de Occidente entre julio y la primera semana de agosto de 2026." , type: "Serie", date: "Agosto 2026" },
-  { title: "Amor en los tiempos del fental", body: "Mi experiencia principal durante este periodo ha sido “Seguimos siendo”, una serie desarrollada en colaboración con la Universidad Autónoma de Occidente entre julio y la primera semana de agosto de 2026.", type: "cortometraje de ficción", date: "Marzo 2026"  },
-  { title: "Cosas raras", body: "Una exploración visual construida desde la dirección de arte, los personajes y los espacios de la historia.", type: "cortometraje de ficción", date: "Julio 2025" },
-  { title: "Espiritu", body: "Montaje y ambientación para una producción audiovisual de atmósfera vibrante.", type: "Montaje de fiesta", date: "Julio 2025"},
-  { title: "Senthia", body: "Montaje y ambientación para una producción audiovisual de atmósfera vibrante.", type: "Montaje de video comercial", date: "septiembre 2026" },
+  { title: "Seguimos siendo", body: "Mi experiencia principal durante este periodo ha sido “Seguimos siendo”, una serie desarrollada en colaboración con la Universidad Autónoma de Occidente entre julio y la primera semana de agosto de 2026." , type: "Serie", date: "Agosto 2026", img1: projectPhotography("seguimos-siendo/1"), img2: projectPhotography("seguimos-siendo/2"), img3: projectPhotography("seguimos-siendo/3"), seal: projectSeal("direccion") },
+  { title: "Amor en los tiempos del fental", body: "En este proyecto estuve a cargo de la dirección de arte, desarrollando la propuesta estética y visual de la historia. Trabajé en el diseño de producción, vestuario y maquillaje, desde la construcción de las ideas en preproducción hasta su ejecución durante el rodaje.", type: "cortometraje de ficción", date: "Marzo 2026", img1: projectPhotography("atf/1"), img2: projectPhotography("atf/2"), img3: projectPhotography("atf/3"), seal: projectSeal("direccion") },
+  { title: "Cosas raras", body: "Como productora de arte, me encargué de la administración del presupuesto del departamento durante el rodaje, la compra de utilería y materiales necesarios para las escenas, y la organización e inventario de los elementos de arte.",  type: "cortometraje de ficción", date: "Julio 2025", img1: projectPhotography("cosas-raras/1"), img2: projectPhotography("cosas-raras/2"), img3: projectPhotography("cosas-raras/3"), seal: projectSeal("asistente") },
+  { title: "Espiritu", body: "Participé como asistente de arte en el montaje de esta fiesta electrónica, colaborando en la creación de elementos escenográficos que transformarían el espacio. Entre ellos, desarrollamos muros y un túnel mediante trabajos de ornamentación, buscando construir una experiencia visual para los asistentes.", type: "Montaje de fiesta", date: "Julio 2025", img1: projectPhotography("espiritu/1"), img2: projectPhotography("espiritu/2"), img3: projectPhotography("espiritu/3"), seal: projectSeal("asistente") },
+  { title: "Senthia", body: "En este comercial trabajé como asistente de arte en la ambientación y construcción de diferentes espacios, buscando que cada escenario transmitiera las sensaciones y la atmósfera que requería la propuesta creativa.", type: "Montaje de video comercial", date: "septiembre 2026", img1: projectPhotography("senthia/video.MOV"), img2: projectPhotography("senthia/2"), img3: projectPhotography("senthia/3"), seal: projectSeal("asistente") },
 ];
 
 const projectImage = (name: string) => `/imagenes/figma/proyectos/${name}`;
@@ -44,14 +47,14 @@ export function ProjectGallery() {
         ))}
 
         <article className="absolute left-[547px] top-[178px] h-[749px] w-[797px] bg-cream-card shadow-[0_8px_6px_rgba(0,0,0,0.25)]">
-          <div className="absolute left-0 top-[-1px] h-[360px] w-[531px] bg-[#d9d9d9]">
-            <span className="absolute inset-0 flex items-center justify-center font-caveat text-[42px] text-black">Imagen de apoyo</span>
+          <div className="absolute left-0 top-[-1px] h-[360px] w-[531px]">
+            <Image src={project.img1} alt="" width={531} height={360} className="h-full w-full object-cover object-center" />
           </div>
-          <div className="absolute right-0 top-[-1px] h-[180px] w-[266px] bg-[#929292]">
-            <span className="absolute inset-0 flex items-center justify-center text-center font-caveat text-[42px] text-black">Imagen de<br />apoyo</span>
+          <div className="absolute right-0 top-[-1px] h-[180px] w-[266px] ">
+             <Image src={project.img2} alt="" width={531} height={360} className="h-full w-full object-cover object-center" />
           </div>
-          <div className="absolute right-0 top-[179px] h-[180px] w-[266px] bg-[#707070]">
-            <span className="absolute inset-0 flex items-center justify-center text-center font-caveat text-[42px] text-white">Imagen de<br />apoyo</span>
+          <div className="absolute right-0 top-[179px] h-[180px] w-[266px] ">
+              <Image src={project.img3} alt="" width={531} height={360} className="h-full w-full object-cover object-center" />
           </div>
 
           <h3 className="absolute left-[46px] top-[397px] w-[520px] font-caveat text-[50px] leading-tight text-forest-muted">
@@ -71,7 +74,7 @@ export function ProjectGallery() {
           >
             VER CLIP
           </a>
-          <Image src={projectImage("sello.png")} alt="Sello de dirección de arte" width={131} height={139} className="absolute left-[609px] top-[410px]" />
+          <Image src={project.seal} alt="Sello de dirección de arte" width={131} height={139} className="absolute left-[609px] top-[410px]" />
           <p className="absolute left-[632px] top-[563px] w-[90px] text-center font-itim text-[10px] leading-normal text-terracotta">
             {project.type}<br />{project.date}
           </p>

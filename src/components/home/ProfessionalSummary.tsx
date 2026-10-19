@@ -62,7 +62,7 @@ export function ProfessionalSummary() {
         >
         </a>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/WwQkLnLmrBw?si=JckKWMDeoD0Z-2XV" className="absolute left-[759px] top-[199px] flex h-[360px] w-[570px] items-center justify-center "
-        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         <p className="absolute left-[895px] top-[562px] w-[315px] text-center font-itim text-[25px] leading-normal text-forest-muted">
           Mi reel portafolio
         </p>
@@ -92,13 +92,6 @@ export function ProfessionalSummary() {
         <Image src={heroImage("image28")} alt="" width={156} height={160} className="absolute left-[1080px] top-[661px] rotate-[20.48deg]" />
         <Image src={heroImage("image26")} alt="" width={112} height={120} className="absolute left-[588px] top-[687px]" />
         <Image src={heroImage("image25")} alt="" width={62} height={62} className="absolute left-[599px] top-[842px]" />
-
-        <div className="absolute left-[-401px] top-[572px] h-[512px] w-[662px] overflow-hidden">
-          <Image src={summaryImage("film-strip.png")} alt="" width={512} height={662} className="absolute left-[75px] top-[-75px] rotate-[-90deg]" />
-        </div>
-        <div className="absolute left-[1158px] top-[529px] h-[512px] w-[662px] overflow-hidden">
-          <Image src={summaryImage("film-strip.png")} alt="" width={512} height={662} className="absolute left-[75px] top-[-75px] rotate-90" />
-        </div>
       </FigmaCanvas>
     </section>
   );
