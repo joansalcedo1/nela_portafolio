@@ -19,7 +19,7 @@ export default function PaperButton({ href, onClick, children, className = "" }:
     <>
       <div className="absolute inset-0 w-full h-full drop-shadow-md group-hover:drop-shadow-lg transition-all">
         <Image
-          src="/imagenes/papel_btn.png" // Recuerda poner la ruta real de tu PNG
+          src="/imagenes/figma/nav/papel-btn.png"
           alt="Fondo de papel"
           width={500}
           height={500}

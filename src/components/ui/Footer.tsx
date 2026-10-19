@@ -1,44 +1,75 @@
 "use client";
 
+import Image from "next/image";
 import { contactInfo } from "@/lib/data";
-import { InstagramIcon, WhatsAppIcon } from "./icons";
+import { FigmaCanvas } from "./FigmaCanvas";
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-bg-base py-12 font-sans relative z-10">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-        
-        {/* Firma */}
-        <div className="flex flex-col items-center md:items-start">
-          <span className="font-mono text-xl font-bold">Nela</span>
-          <span className="text-sm opacity-80 mt-1">Daniela Rubio Hurtado</span>
-        </div>
-
-        {/* CTAs / Redes */}
-        <div className="flex items-center gap-6">
-          <a
-            href={`https://instagram.com/${contactInfo.instagram}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-accent-primary transition-colors group"
-            aria-label="Instagram"
-          >
-            <InstagramIcon className="group-hover:scale-110 transition-transform" />
-          </a>
-          <a
-            href={`https://wa.me/${contactInfo.whatsapp}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-accent-primary transition-colors group"
-            aria-label="WhatsApp"
-          >
-            <WhatsAppIcon className="group-hover:scale-110 transition-transform" />
-          </a>
-        </div>
-      </div>
-      <div className="container mx-auto px-6 mt-8 pt-8 border-t border-bg-base/20 text-center text-sm opacity-60">
-        &copy; {new Date().getFullYear()} Nela. Todos los derechos reservados.
-      </div>
+    <footer className="relative overflow-hidden bg-bg-base">
+      <FigmaCanvas width={1440} height={512}>
+        <div className="absolute inset-0 bg-terracotta" />
+        <Image
+          src="/imagenes/figma/footer/banner.png"
+          alt=""
+          width={710}
+          height={455}
+          className="absolute object-cover"
+          style={{ left: 0, top: 67, width: 710, height: 455 }}
+        />
+        <Image
+          src="/imagenes/figma/footer/banner.png"
+          alt=""
+          width={710}
+          height={455}
+          className="absolute object-cover"
+          style={{ left: 730, top: 66, width: 710, height: 455, transform: "scaleX(-1)" }}
+        />
+        <p
+          className="absolute text-center font-caveat text-[36px] leading-normal text-paper"
+          style={{ left: 529, top: 121, width: 375 }}
+        >
+          ¡Conectemos ve!
+        </p>
+        <a
+          href={`https://wa.me/${contactInfo.whatsapp}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          className="absolute"
+          style={{ left: 602, top: 184, width: 105, height: 101 }}
+        >
+          <Image
+            src="/imagenes/figma/footer/image72.png"
+            alt=""
+            width={105}
+            height={101}
+            className="h-full w-full object-cover"
+          />
+        </a>
+        <a
+          href={`https://instagram.com/${contactInfo.instagram}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="absolute"
+          style={{ left: 721, top: 199, width: 67, height: 71 }}
+        >
+          <Image
+            src="/imagenes/figma/footer/image73.png"
+            alt=""
+            width={67}
+            height={71}
+            className="h-full w-full object-cover"
+          />
+        </a>
+        <p
+          className="absolute text-center font-caveat text-[18px] font-bold leading-normal text-white"
+          style={{ left: 665, top: 434, width: 73 }}
+        >
+          NELAARTE<br />2026
+        </p>
+      </FigmaCanvas>
     </footer>
   );
 }

@@ -30,7 +30,7 @@ export function FigmaCanvas({ width, height, className = "", children }: FigmaCa
   return (
     <div
       ref={wrapperRef}
-      className={`relative w-full overflow-hidden ${className}`}
+      className={`relative w-full  ${className}`}
       style={{ height: height * scale }}
     >
       <div
@@ -39,7 +39,8 @@ export function FigmaCanvas({ width, height, className = "", children }: FigmaCa
           height,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-        }}
+          "--figma-canvas-scale": scale,
+        } as React.CSSProperties}
       >
         {children}
       </div>

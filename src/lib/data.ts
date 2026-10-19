@@ -5,7 +5,7 @@ export const contactInfo = {
   instagram: "nelaartee",
   reelYoutubeUrl: "https://www.youtube.com/watch?v=WwQkLnLmrBw&time_continue=0&source_ve_path=NzY3NTg&embeds_referring_euri=https%3A%2F%2Freadymag.website%2F&embeds_referring_origin=https%3A%2F%2Freadymag.website",
   experienceYears: "3",
-  availability: "Cali/Jamundi",
+  availability: "Cali, Col",
 };
 
 export type Category = "Todos" | "Shooting" | "Montaje" | "Video Clip" | "Cortometraje";

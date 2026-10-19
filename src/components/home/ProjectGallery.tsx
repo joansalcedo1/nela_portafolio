@@ -1,144 +1,84 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { projects, Category } from "@/lib/data";
+import { FigmaCanvas } from "../ui/FigmaCanvas";
 
-const categories: Category[] = ["Todos", "Shooting", "Montaje", "Video Clip", "Cortometraje"];
+const projects = [
+  { title: "Seguimos siendo", body: "Mi experiencia principal durante este periodo ha sido “Seguimos siendo”, una serie desarrollada en colaboración con la Universidad Autónoma de Occidente entre julio y la primera semana de agosto de 2026." , type: "Serie", date: "Agosto 2026" },
+  { title: "Amor en los tiempos del fental", body: "Mi experiencia principal durante este periodo ha sido “Seguimos siendo”, una serie desarrollada en colaboración con la Universidad Autónoma de Occidente entre julio y la primera semana de agosto de 2026.", type: "cortometraje de ficción", date: "Marzo 2026"  },
+  { title: "Cosas raras", body: "Una exploración visual construida desde la dirección de arte, los personajes y los espacios de la historia.", type: "cortometraje de ficción", date: "Julio 2025" },
+  { title: "Espiritu", body: "Montaje y ambientación para una producción audiovisual de atmósfera vibrante.", type: "Montaje de fiesta", date: "Julio 2025"},
+  { title: "Senthia", body: "Montaje y ambientación para una producción audiovisual de atmósfera vibrante.", type: "Montaje de video comercial", date: "septiembre 2026" },
+];
 
-const figmaPhotos: Record<string, string> = {
-  controversy: "/imagenes/figma/projects-photo-controversy.png",
-  dynamo: "/imagenes/figma/projects-photo-dynamo.png",
-  "bichiyali-by-edu": "/imagenes/figma/projects-photo-bichiyali.png",
-};
-
-const categoryLabel: Record<Category, string> = {
-  Todos: "Todos",
-  Shooting: "shooring",
-  Montaje: "Montaje",
-  "Video Clip": "Videoclip",
-  Cortometraje: "Proyección",
-};
+const projectImage = (name: string) => `/imagenes/figma/proyectos/${name}`;
 
 export function ProjectGallery() {
-  const [activeCategory, setActiveCategory] = useState<Category>("Todos");
-
-  const filteredProjects = projects.filter(
-    (p) => activeCategory === "Todos" || p.category === activeCategory
-  );
+  const [selectedProject, setSelectedProject] = useState(1);
+  const project = projects[selectedProject];
 
   return (
-    <section id="proyectos" className="py-24 bg-[#fbf6f1] relative overflow-hidden">
-      {/* Decoración de fondo */}
-      <Image src="/imagenes/figma/projects-image42.png" alt="" width={266} height={229} className="absolute pointer-events-none select-none hidden lg:block opacity-90" style={{ left: "10%", top: "8%" }} />
-      <Image src="/imagenes/figma/projects-frog.png" alt="" width={27} height={26} className="absolute pointer-events-none select-none hidden lg:block" style={{ right: "12%", top: "4%" }} />
-      <Image src="/imagenes/figma/projects-image39.png" alt="" width={165} height={136} className="absolute pointer-events-none select-none hidden lg:block opacity-90" style={{ right: "8%", bottom: "10%" }} />
+    <section id="proyectos" className="relative overflow-hidden bg-bg-base">
+      <FigmaCanvas width={1440} height={1024}>
+        <h2 className="absolute left-[110px] top-[201px] font-itim text-[60px] leading-none text-forest-muted">
+          Proyectos
+        </h2>
+        <p className="absolute left-[105px] top-[278px] font-caveat text-[80px] leading-none text-forest-muted">
+          Destacados
+        </p>
 
-      <div className="container mx-auto px-6 max-w-7xl relative">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-caveat text-4xl md:text-5xl font-bold text-forest mb-4"
+        {projects.map((item, index) => (
+          <button
+            key={`${item.title}-${index}`}
+            type="button"
+            onClick={() => setSelectedProject(index)}
+            aria-pressed={selectedProject === index}
+            className={`absolute left-[66px] flex h-[54px] w-[426px] items-center gap-[14px] px-[26px] font-caveat text-[25px] text-terracotta transition-opacity ${selectedProject === index ? "opacity-100" : "opacity-60"}`}
+            style={{ top: 485 + index * 69 }}
           >
-            Proyectos
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="font-sans text-ink/70 max-w-2xl mx-auto"
+            <Image src={projectImage("papel-lista.png")} alt="" fill className="h-full w-full object-cover object-center" />
+            <span className="relative z-10 font-itim text-[18px]">{String(index + 1).padStart(2, "0")}.</span>
+            <span className="relative z-10 whitespace-nowrap">“{item.title}”</span>
+          </button>
+        ))}
+
+        <article className="absolute left-[547px] top-[178px] h-[749px] w-[797px] bg-cream-card shadow-[0_8px_6px_rgba(0,0,0,0.25)]">
+          <div className="absolute left-0 top-[-1px] h-[360px] w-[531px] bg-[#d9d9d9]">
+            <span className="absolute inset-0 flex items-center justify-center font-caveat text-[42px] text-black">Imagen de apoyo</span>
+          </div>
+          <div className="absolute right-0 top-[-1px] h-[180px] w-[266px] bg-[#929292]">
+            <span className="absolute inset-0 flex items-center justify-center text-center font-caveat text-[42px] text-black">Imagen de<br />apoyo</span>
+          </div>
+          <div className="absolute right-0 top-[179px] h-[180px] w-[266px] bg-[#707070]">
+            <span className="absolute inset-0 flex items-center justify-center text-center font-caveat text-[42px] text-white">Imagen de<br />apoyo</span>
+          </div>
+
+          <h3 className="absolute left-[46px] top-[397px] w-[520px] font-caveat text-[50px] leading-tight text-forest-muted">
+            {project.title}
+          </h3>
+          <p className="absolute left-[46px] top-[479px] w-[510px] font-itim text-[16px] leading-normal text-forest-muted">
+            En este proyecto asumí el rol de directora de arte, trabajando en la construcción visual de los personajes y de los espacios destinados a las entrevistas.
+          </p>
+          <p className="absolute left-[46px] top-[563px] w-[504px] font-itim text-[16px] leading-normal text-forest-muted">
+            {project.body}
+          </p>
+          <a
+            href="https://www.youtube.com/watch?v=WwQkLnLmrBw&time_continue=0&source_ve_path=NzY3NTg&embeds_referring_euri=https%3A%2F%2Freadymag.website%2F&embeds_referring_origin=https%3A%2F%2Freadymag.website"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute left-[46px] top-[674px] flex h-[36px] w-[473px] items-center justify-center rounded-lg bg-terracotta font-caveat text-[20px] font-bold text-paper"
           >
-            Cada trabajo es una obra propia — con su rol, su año, y la atmósfera que ayudé a construir.
-          </motion.p>
-        </div>
-
-        {/* Filtros */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 mb-16"
-        >
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 font-caveat text-lg border transition-all ${
-                activeCategory === cat
-                  ? "bg-accent-primary border-accent-primary text-ink shadow-[2px_2px_0px_rgba(32,32,32,1)]"
-                  : "bg-transparent border-ink/20 text-ink/70 hover:border-ink/50"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Grid de tarjetas estilo marco dorado */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
-          <AnimatePresence>
-            {filteredProjects.map((project) => {
-              const photo = figmaPhotos[project.slug];
-              const displayTitle = project.title.replace(/^\.+|\.+$/g, "");
-
-              return (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                  className="relative pb-16 pr-4"
-                >
-                  <Link href={`/proyectos/${project.slug}`} className="block">
-                    {/* Marco dorado + foto */}
-                    <div className="relative w-full aspect-[321/360]">
-                      <Image
-                        src="/imagenes/figma/projects-gold-frame.png"
-                        alt=""
-                        fill
-                        className="object-fill pointer-events-none select-none"
-                      />
-                      <div
-                        className="absolute overflow-hidden bg-ink/10"
-                        style={{ left: "16%", top: "13.5%", width: "67.6%", height: "75%" }}
-                      >
-                        {photo ? (
-                          <Image src={photo} alt={project.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
-                        ) : (
-                          <div className="absolute inset-0 flex items-center justify-center font-mono text-[10px] text-ink/40 p-2 text-center bg-surface/20">
-                            [ IMAGEN ]<br />{project.title}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Placa de info */}
-                    <div className="absolute right-0 bottom-0 bg-white rounded-[15px] shadow-[0px_4px_18px_0px_rgba(0,0,0,0.25)] px-5 py-4 w-[70%] group-hover:shadow-lg transition-shadow">
-                      <p className="font-itim text-sm text-forest-muted">{categoryLabel[project.category]}</p>
-                      <p className="font-caveat font-bold text-xl text-forest-muted leading-snug">&quot;{displayTitle}&quot;</p>
-                      <p className="font-itim text-sm text-forest-muted mb-2">{project.role}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="font-caveat font-bold text-xl text-forest-muted">{project.year}</span>
-                        <span className="relative inline-flex items-center justify-center h-9 px-4">
-                          <Image src="/imagenes/papel_btn.png" alt="" fill className="object-cover -z-10" />
-                          <span className="relative font-caveat font-bold text-terracotta text-sm">¡Conoce más!</span>
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-        </motion.div>
-      </div>
+            VER CLIP
+          </a>
+          <Image src={projectImage("sello.png")} alt="Sello de dirección de arte" width={131} height={139} className="absolute left-[609px] top-[410px]" />
+          <p className="absolute left-[632px] top-[563px] w-[90px] text-center font-itim text-[10px] leading-normal text-terracotta">
+            {project.type}<br />{project.date}
+          </p>
+          <Image src={projectImage("image64.png")} alt="" width={63} height={123} className="absolute left-[512px] top-[604px]" />
+          <Image src={projectImage("image65.png")} alt="" width={106} height={87} className="absolute left-[37px] top-[631px]" />
+        </article>
+      </FigmaCanvas>
     </section>
   );
 }
