@@ -40,8 +40,6 @@ const experienceProjects = [
     functions: ["escenografia", "ambientacion","vestuario"] satisfies FunctionId[],
     photos: [
       { src: practiceImage("Celsia1.webp"), alt: "Músicos durante una producción audiovisual" },
-      { src: practiceImage("Celsia2.webp"), alt: "Escena de una producción audiovisual" },
-      { src: practiceImage("Celsia3.webp"), alt: "Preparación de maquillaje durante una producción" },
       { src: practiceImage("Celsia4.webp"), alt: "Set preparado para una producción audiovisual" },
       { src: practiceImage("Celsia5.webp"), alt: "Equipo trabajando en una producción audiovisual" },
       { src: practiceImage("Celsia6.webp"), alt: "Preparación de un set para una producción" },
