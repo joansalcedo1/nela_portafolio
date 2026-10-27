@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { contactInfo } from "@/lib/data";
 import { FigmaCanvas } from "./FigmaCanvas";
 
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-bg-base">
+      <div className="flex min-h-32 items-center justify-center bg-terracotta px-5 py-8 text-center font-caveat text-2xl font-bold text-white min-[1280px]:hidden">
+        NELAARTE ©2026
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1440} height={512}>
         <div className="absolute inset-0 bg-terracotta" />
         <Image
@@ -70,6 +73,7 @@ export function Footer() {
           NELAARTE<br />©2026
         </p>
       </FigmaCanvas>
+      </div>
     </footer>
   );
 }

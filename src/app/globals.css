@@ -33,6 +33,17 @@
 :root {
   background-color: var(--color-bg-base);
   color: var(--color-ink);
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
+@media (max-width: 1279px) {
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
 }
 
 body {

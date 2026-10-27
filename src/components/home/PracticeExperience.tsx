@@ -237,7 +237,53 @@ function ProjectCarousel({
 export function PracticeExperience() {
   return (
     <section id="experiencia" className="relative bg-bg-base overflow-x-clip">
-
+      <div className="mx-auto max-w-6xl space-y-8 px-5 py-12 min-[1280px]:hidden">
+        <div>
+          <h2 className="mb-4 font-caveat text-5xl leading-tight text-forest-muted">Experiencia en la práctica</h2>
+          <div className="rounded-xl bg-cream-card p-5 shadow-md">
+            <p className="font-caveat text-xl text-black">Productora audiovisual</p>
+            <p className="font-caveat text-3xl text-black">Auténtica</p>
+            <p className="mt-2 font-itim text-forest-muted">Mayo - Octubre 2026</p>
+            <p className="font-itim text-forest-muted">Johnathan Álvarez, director de fotografía</p>
+          </div>
+        </div>
+        {experienceProjects.map((project) => (
+          <article key={`${project.title}-mobile`} className="overflow-hidden rounded-xl bg-cream-card shadow-md">
+            <div className="space-y-3 p-5">
+              <h3 className="font-caveat text-3xl font-bold text-forest-muted">{project.title}</h3>
+              <p className="font-itim leading-relaxed text-forest-muted">{project.description}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-1">
+              {project.photos.map((photo) => (
+                <Image
+                  key={photo.src}
+                  src={photo.src}
+                  alt={photo.alt}
+                  width={500}
+                  height={350}
+                  className="aspect-[4/3] w-full object-cover"
+                  sizes="50vw"
+                />
+              ))}
+            </div>
+            <div className="p-5">
+              <h4 className="mb-3 font-caveat text-2xl font-bold text-forest-muted">Mis funciones</h4>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {project.functions.map((functionId) => {
+                  const item = functions[functionId];
+                  return (
+                    <div key={functionId} className={`flex min-h-28 flex-col items-center justify-center gap-2 rounded-lg p-3 text-center shadow-sm ${item.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-bg-base text-forest-muted"}`}>
+                      <Image src={practiceImage(item.image)} alt="" width={52} height={52} className="h-13 w-13 object-contain" />
+                      <p className="font-itim text-sm leading-tight">{item.name}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1440} height={2300}>
         <h2 className="absolute left-[99px] top-[168px] whitespace-nowrap font-caveat text-[80px] font-normal leading-none text-forest-muted">
           Experiencia en la práctica
@@ -333,6 +379,7 @@ export function PracticeExperience() {
         <Image src={heroImage("estrella")} alt="" width={26} height={25} className="absolute left-[557px] top-[546px]" />
         <Image src={heroImage("estrella")} alt="" width={26} height={25} className="absolute left-[597px] top-[534px]" />
       </FigmaCanvas>
+      </div>
     </section>
   );
 }

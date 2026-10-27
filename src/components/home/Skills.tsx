@@ -49,6 +49,33 @@ export function Skills() {
 
   return (
     <section id="habilidades" className="relative overflow-hidden bg-bg-base">
+      <div className="mx-auto max-w-6xl px-5 py-12 min-[1280px]:hidden">
+        <h2 className="mb-4 font-caveat text-5xl leading-tight text-forest-muted">Habilidades</h2>
+        <p className="mb-6 font-itim leading-relaxed text-forest-muted">
+          Durante mis prácticas en Auténtica descubrí que trabajar en arte va mucho más allá de tener buenas ideas. Aprendí a llevarlas a la realidad, a trabajar con los recursos disponibles y a adaptarme a los retos de cada producción. Fue una experiencia que me permitió desarrollar nuevas habilidades y entender mejor cómo funciona el trabajo creativo dentro de un equipo audiovisual.
+        </p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {cards.map((card) => {
+            const isActive = activeId === card.id;
+            const isTerracotta = card.tone === "terracotta";
+            return (
+              <button
+                key={`${card.id}-mobile`}
+                type="button"
+                aria-expanded={isActive}
+                onClick={() => setActiveId((currentId) => currentId === card.id ? null : card.id)}
+                className={`min-h-36 rounded-xl p-5 text-left shadow-md transition-transform active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta ${isTerracotta ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"}`}
+              >
+                <span className="font-caveat text-xl">{card.id}</span>
+                <span className="mt-2 block font-caveat text-2xl font-bold">{card.title}</span>
+                {isActive && <span className="mt-3 block font-itim leading-relaxed">{card.description}</span>}
+                <span className="mt-2 block font-itim text-sm opacity-80">{isActive ? "Toca para cerrar" : "Toca para conocer más"}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1440} height={1024}>
         <h2 className="absolute left-[96px] top-[159px] whitespace-nowrap font-caveat text-[80px] font-normal leading-none text-forest-muted">
           Habilidades
@@ -129,6 +156,7 @@ export function Skills() {
           );
         })}
       </FigmaCanvas>
+      </div>
     </section>
   );
 }

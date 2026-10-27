@@ -3,7 +3,7 @@ export const contactInfo = {
   whatsappDisplay: "+57 318 801473", // Número visual
   email: "contacto@nelaarte.com", // TODO: reemplazar por el correo real de Nela antes de publicar
   instagram: "nelaartee",
-  reelYoutubeUrl: "https://www.youtube.com/watch?v=WwQkLnLmrBw&time_continue=0&source_ve_path=NzY3NTg&embeds_referring_euri=https%3A%2F%2Freadymag.website%2F&embeds_referring_origin=https%3A%2F%2Freadymag.website",
+  reelYoutubeUrl: "https://www.youtube.com/embed/H218g8uK6LI?si=LV0A5fV38BS7GF-M",
   experienceYears: "3",
   availability: "Cali, Col",
 };

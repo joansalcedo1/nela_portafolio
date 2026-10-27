@@ -21,7 +21,7 @@ const lessons: Lesson[] = [
     id: "#01",
     title: "Dinámica profesional de rodaje",
     text: "Uno de mis primeros retos fue adaptarme a una forma de trabajo diferente a la que conocía.\n\nMi experiencia previa venía principalmente de proyectos universitarios y montajes para eventos, por lo que durante la práctica tuve que desarrollar una mirada más atenta a lo que registra la cámara. Aprendí a usar el monitor como herramienta de trabajo y a revisar vestuario, escenografía, utilería y cada detalle del encuadre.",
-    image: `/imagenes/figma/retos/foto-set.png`,
+    image: `/imagenes/figma/practicas/foto_set.webp`,
     imageAlt: "Equipo trabajando durante un rodaje",
     left: 87,
     tone: "cream",
@@ -87,6 +87,33 @@ export function Challenges() {
 
   return (
     <section id="retos" className="relative overflow-hidden bg-bg-base">
+      <div className="mx-auto max-w-6xl px-5 py-12 min-[1280px]:hidden">
+        <h2 className="mb-4 font-caveat text-5xl leading-tight text-forest-muted">Retos y aprendizajes</h2>
+        <p className="mb-6 font-itim leading-relaxed text-forest-muted">
+          Durante mi proceso de práctica profesional en la productora audiovisual Auténtica, enfrenté retos significativos que me permitieron crecer como directora de arte.
+        </p>
+        <div role="group" aria-label="Seleccionar reto" className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {lessons.map((lesson, index) => (
+            <button
+              key={lesson.id}
+              type="button"
+              aria-pressed={activeLessonIndex === index}
+              onClick={() => setActiveLessonIndex(index)}
+              className={`min-h-16 rounded-lg px-3 py-2 text-left font-itim text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terracotta ${lesson.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"}`}
+            >
+              <span className="mr-2 font-caveat text-lg">{lesson.id}</span>{lesson.title}
+            </button>
+          ))}
+        </div>
+        <article aria-live="polite" className={`overflow-hidden rounded-xl shadow-lg ${activeLesson.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"}`}>
+          <Image src={activeLesson.image} alt={activeLesson.imageAlt} width={640} height={420} className="aspect-video w-full object-cover" sizes="(max-width: 768px) 100vw, 768px" />
+          <div className="space-y-3 p-5">
+            <h3 className="font-caveat text-3xl font-bold">{activeLesson.title}</h3>
+            {activeLesson.text.split("\n\n").map((paragraph, index) => <p key={`${activeLesson.id}-mobile-${index}`} className="font-itim leading-relaxed">{paragraph}</p>)}
+          </div>
+        </article>
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1440} height={1024}>
         <h2 className="absolute left-[96px] top-[189px] whitespace-nowrap font-caveat text-[80px] font-normal leading-none text-forest-muted">
           Retos y aprendizajes
@@ -159,6 +186,7 @@ export function Challenges() {
           })}
         </div>
       </FigmaCanvas>
+      </div>
     </section>
   );
 }

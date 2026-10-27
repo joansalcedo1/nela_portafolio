@@ -9,6 +9,28 @@ const img = (name: string) => `/imagenes/figma/hero-${name}.png`;
 export function Hero() {
   return (
     <section id="sobre-mi" className="bg-bg-base relative">
+      <div className="mx-auto flex max-w-xl flex-col gap-6 px-5 pb-10 pt-20 min-[1280px]:hidden">
+        <div className="relative aspect-[4/5] overflow-hidden rounded-xl shadow-lg">
+          <Image src={img("carta-fondo")} alt="Nela en set de rodaje" fill className="object-cover" sizes="(max-width: 640px) 100vw, 576px" priority />
+          <Image src={img("imageHer2")} alt="" fill className="pointer-events-none object-contain p-8" sizes="(max-width: 640px) 100vw, 576px" />
+        </div>
+        <div className="text-center">
+          <p className="font-caveat text-3xl text-forest-muted">¡Hola! mi nombre es</p>
+          <h1 className="font-caveat text-7xl font-bold leading-none text-forest-muted">Nela</h1>
+          <p className="mt-2 font-caveat text-3xl font-bold text-forest-muted">Artista visual</p>
+        </div>
+        <dl className="grid grid-cols-2 gap-3 rounded-xl bg-cream-card p-4 font-itim text-forest-muted">
+          <dt>Ubicada en:</dt><dd className="font-bold">{contactInfo.availability}</dd>
+          <dt>Estudios:</dt><dd className="font-bold">Profesional en Cine</dd>
+          <dt>Especialidad:</dt><dd className="font-bold">Estudios de género</dd>
+          <dt>Trayectoria:</dt><dd className="font-bold">+{contactInfo.experienceYears} años</dd>
+        </dl>
+        <div className="rounded-xl bg-[url('/imagenes/papel_btn.png')] bg-cover px-4 py-5 text-center font-caveat text-2xl font-bold text-terracotta">
+          <p className="mb-2">Roles actuales</p>
+          <p>Dirección de arte · Diseño de producción · Styling</p>
+        </div>
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1920} height={1365}>
         {/* Foto real + marco decorativo */}
         <div className="absolute rounded-lg overflow-hidden" style={{ left: 1012, top: 253, width: 733, height: 988 }}>
@@ -58,6 +80,7 @@ export function Hero() {
         <Image src={img("image26")} alt="" width={149} height={160} className="absolute pointer-events-none select-none" style={{ left: 136, top: 956 }} />
         <Image src={img("image31")} alt="" width={331} height={397} className="absolute pointer-events-none select-none" style={{ left: 591, top: 901 }} />
       </FigmaCanvas>
+      </div>
     </section>
   );
 }

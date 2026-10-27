@@ -51,6 +51,30 @@ const statistics = [
 export function Results() {
   return (
     <section id="resultados" className="relative overflow-hidden bg-bg-base">
+      <div className="mx-auto max-w-6xl px-5 py-12 min-[1280px]:hidden">
+        <h2 className="mb-4 font-caveat text-5xl leading-tight text-forest-muted">Resultados</h2>
+        <p className="mb-6 font-itim leading-relaxed text-forest-muted">
+          En Auténtica aprendí a equilibrar la exploración estética con el rigor técnico del audiovisual, desarrollando una gestión en set donde la productividad, la precisión operativa y el detalle son la prioridad.
+        </p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {outcomes.map((outcome) => (
+            <article key={`${outcome.title}-mobile`} className={`rounded-xl p-5 shadow-md ${outcome.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"}`}>
+              <h3 className="mb-2 font-caveat text-2xl font-bold">{outcome.title}</h3>
+              <p className="font-itim leading-relaxed">{outcome.body}</p>
+            </article>
+          ))}
+        </div>
+        <Image src={resultsImage("image35.png")} alt="Ilustración de un sol con rostro" width={256} height={274} className="mx-auto my-6 h-48 w-56 object-contain" />
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {statistics.map((stat) => (
+            <div key={`${stat.value}-mobile`} className="rounded-xl bg-cream-card px-4 py-5 text-center shadow-md">
+              <p className="font-caveat text-4xl font-bold text-forest-muted">{stat.value}</p>
+              <p className="font-caveat text-xl font-bold text-forest-muted">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1440} height={1024}>
         <h2 className="absolute left-[98px] top-[170px] whitespace-nowrap font-caveat text-[80px] font-normal leading-none text-forest-muted">
           Resultados
@@ -105,6 +129,7 @@ export function Results() {
           </div>
         ))}
       </FigmaCanvas>
+      </div>
     </section>
   );
 }

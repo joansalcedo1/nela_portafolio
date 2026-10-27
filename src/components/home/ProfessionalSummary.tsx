@@ -35,6 +35,39 @@ const courses = [
 export function ProfessionalSummary() {
   return (
     <section id="resumen" className="relative overflow-hidden bg-bg-base">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-12 min-[1280px]:hidden">
+        <h2 className="font-caveat text-5xl leading-tight text-forest-muted">Resumen profesional</h2>
+        <div className="space-y-4 font-itim leading-relaxed text-forest-muted">
+          <p>Desde la dirección y producción de arte trabajo en la construcción de universos visuales y en todo el proceso necesario para llevarlos a la realidad.</p>
+          <p>Soy estudiante de Cine y he trabajado como directora, productora y asistente de arte en distintos proyectos audiovisuales, participando desde la construcción de la propuesta visual hasta su ejecución.</p>
+          <p>Esta experiencia me ha llevado a combinar lo creativo con la gestión: coordinar equipos, organizar materiales y utilería, trabajar con proveedores, administrar recursos y adaptarme a las necesidades de cada producción.</p>
+          <p>Me interesa seguir creciendo dentro del departamento de arte y participar en proyectos donde pueda aportar desde la creación, la organización y el trabajo colectivo. Soy detallista, práctica y disfruto especialmente transformar una idea en algo tangible.</p>
+        </div>
+        <div className="overflow-hidden rounded-xl shadow-md">
+          <iframe
+            src={contactInfo.reelYoutubeUrl}
+            title="Mi reel portafolio"
+            className="aspect-video w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+        <div>
+          <h3 className="mb-4 font-caveat text-3xl font-bold text-forest-muted">Cursos y/o electivas</h3>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {courses.map((course) => (
+              <div key={course.name} className="flex items-center gap-3 rounded-lg bg-terracotta p-3 text-paper shadow-md">
+                <Image src={summaryImage(course.image)} alt="" width={48} height={48} className="shrink-0" />
+                <div className="font-itim">
+                  <p>{course.name}</p>
+                  <p className="text-sm">{course.place}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1440} height={1024}>
         <h2 className="absolute left-[122px] top-[219px] whitespace-nowrap font-caveat text-[80px] font-normal leading-none text-forest-muted">
           Resumen profesional
@@ -60,8 +93,9 @@ export function ProfessionalSummary() {
           aria-label="Ver reel de portafolio en YouTube"
           className="transition-colors hover:bg-[#cecece]"
         >
+          sisadkasd
         </a>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/WwQkLnLmrBw?si=JckKWMDeoD0Z-2XV" className="absolute left-[759px] top-[199px] flex h-[360px] w-[570px] items-center justify-center "
+        <iframe width="560" height="315" src={contactInfo.reelYoutubeUrl} className="absolute left-[759px] top-[199px] flex h-[360px] w-[570px] items-center justify-center "
         title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
         <p className="absolute left-[895px] top-[562px] w-[315px] text-center font-itim text-[25px] leading-normal text-forest-muted">
           Mi reel portafolio
@@ -93,6 +127,7 @@ export function ProfessionalSummary() {
         <Image src={heroImage("image26")} alt="" width={112} height={120} className="absolute left-[588px] top-[687px]" />
         <Image src={heroImage("image25")} alt="" width={62} height={62} className="absolute left-[599px] top-[842px]" />
       </FigmaCanvas>
+      </div>
     </section>
   );
 }

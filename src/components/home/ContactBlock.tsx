@@ -38,10 +38,13 @@ export function ContactBlock() {
       if (response.ok) {
         setStatus('success');
         form.reset();
+        setNombre("");
+        setEmail("");
+        setMensaje("");
       } else {
         setStatus('error');
       }
-    } catch (error) {
+    } catch {
       setStatus('error');
     }
   };
@@ -49,6 +52,62 @@ export function ContactBlock() {
 
   return (
     <section id="contacto" className="bg-[#fcf8f4] relative overflow-hidden">
+      <div className="mx-auto max-w-6xl space-y-6 px-5 py-12 min-[1280px]:hidden">
+        <div className="rounded-xl bg-cream-card p-6 text-center text-forest-muted shadow-md">
+          <p className="font-caveat text-3xl leading-tight">¿Te gustaría trabajar conmigo?</p>
+          <p className="mt-3 font-caveat text-3xl leading-tight">Déjame un mensaje contándome la visión de tu idea</p>
+        </div>
+        <div className="rounded-xl bg-terracotta p-5 text-center text-paper shadow-md">
+          <p className="mb-4 font-caveat text-3xl">¡Conectémonos!</p>
+          <div className="flex justify-center gap-4">
+            <a href={`https://instagram.com/${contactInfo.instagram}`} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex size-14 items-center justify-center rounded-full bg-paper text-terracotta">
+              <InstagramIcon className="size-7" />
+            </a>
+            <a href={`https://wa.me/${contactInfo.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex size-14 items-center justify-center rounded-full bg-paper text-terracotta">
+              <WhatsAppIcon className="size-7" />
+            </a>
+          </div>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            required
+            value={nombre}
+            name="nombre"
+            onChange={(e) => setNombre(e.target.value)}
+            placeholder="Nombre *"
+            className="min-h-14 w-full border-b-4 border-terracotta bg-cream-card px-4 font-itim text-terracotta outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+          />
+          <input
+            type="email"
+            required
+            value={email}
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email *"
+            className="min-h-14 w-full border-b-4 border-terracotta bg-cream-card px-4 font-itim text-terracotta outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+          />
+          <textarea
+            required
+            value={mensaje}
+            name="mensaje"
+            onChange={(e) => setMensaje(e.target.value)}
+            placeholder="Tu idea va aquí (mensaje)"
+            rows={5}
+            className="w-full resize-y border-b-4 border-terracotta bg-cream-card px-4 py-3 font-itim text-terracotta outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+          />
+          <button
+            type="submit"
+            disabled={status === "submitting"}
+            className="min-h-14 w-full rounded-lg bg-terracotta px-4 font-caveat text-xl font-bold text-paper transition-colors hover:bg-terracotta-hover disabled:opacity-60"
+          >
+            {status === "submitting" ? "Enviando..." : "¡Hagamos que esa visión cobre vida!"}
+          </button>
+          {status === "success" && <p role="status" className="font-itim text-forest-muted">¡Mensaje enviado! Gracias por escribirme.</p>}
+          {status === "error" && <p role="alert" className="font-itim text-terracotta">No se pudo enviar el mensaje. Inténtalo de nuevo.</p>}
+        </form>
+      </div>
+      <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1920} height={1365}>
         {/* Tarjeta introductoria */}
         <div
@@ -120,6 +179,8 @@ export function ContactBlock() {
           >
             {status === 'submitting' ? 'Enviando...' : '¡Hagamos que esa visión cobra vida!'}
           </button>
+          {status === "success" && <p className="absolute left-[1035px] top-[981px] w-[660px] font-itim text-[18px] text-forest-muted" role="status">¡Mensaje enviado! Gracias por escribirme.</p>}
+          {status === "error" && <p className="absolute left-[1035px] top-[981px] w-[660px] font-itim text-[18px] text-terracotta" role="alert">No se pudo enviar el mensaje. Inténtalo de nuevo.</p>}
         </form>
 
         {/* Cintas washi (recorte tipo sprite del mismo asset) */}
@@ -153,6 +214,7 @@ export function ContactBlock() {
         <Image src={img2("estrella")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 816, top: 961 }} />
         <Image src={img("image40")} alt="" width={217} height={89} className="absolute pointer-events-none select-none" style={{ left: 1180, top: 548 }} />
       </FigmaCanvas>
+      </div>
     </section>
   );
 }
