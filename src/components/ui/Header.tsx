@@ -11,13 +11,13 @@ export function Header() {
   ];
 
   return (
-    <header className="fixed left-0 top-0 z-50 h-21 w-full rounded-b-2xl bg-white px-3 py-2 shadow-sm xl:h-30.25 xl:px-5.25 xl:py-3.75">
-      <div className="flex h-full items-center justify-between gap-2 xl:gap-4">
-        <Link href="/" className="shrink-0 font-caveat text-[42px] font-bold leading-none text-forest xl:text-[72px]">
+    <header className="fixed left-0 top-0 z-50 h-14 w-full rounded-b-2xl bg-white px-3 py-2 shadow-sm xl:h-24 xl:px-5 xl:py-3">
+      <div className="flex h-full items-center justify-between gap-2 xl:gap-3">
+        <Link href="/" className="shrink-0 font-caveat text-[38px] font-bold leading-none text-forest xl:text-[60px]">
           Nelaarte
         </Link>
 
-        <nav className="hidden items-center justify-center gap-12 px-6 py-1 font-caveat text-[28px] font-bold text-forest xl:flex">
+        <nav className="hidden items-center justify-center gap-8 px-4 py-1 font-caveat text-[24px] font-bold text-forest xl:flex">
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="whitespace-nowrap transition-colors hover:text-terracotta">
               {link.label}
@@ -38,8 +38,8 @@ export function Header() {
           </nav>
         </details>
 
-        <PaperButton href="#contacto" className="shrink-0 px-1 py-2 xl:px-6 xl:py-3">
-          <span className="relative z-10 whitespace-nowrap font-caveat text-[20px] font-bold leading-none text-terracotta xl:text-[40px]">
+        <PaperButton href="#contacto" className="shrink-0 px-1 py-2 xl:px-5 xl:py-2">
+          <span className="relative z-10 whitespace-nowrap font-caveat text-[18px] font-bold leading-none text-terracotta xl:text-[32px]">
             !Construyamos!
           </span>
         </PaperButton>

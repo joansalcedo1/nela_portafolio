@@ -14,8 +14,8 @@ export function Hero() {
         <div className="absolute rounded-lg overflow-hidden" style={{ left: 1012, top: 253, width: 733, height: 988 }}>
           <Image src={img("carta-fondo")} alt="Nela en set de rodaje" fill className="object-cover" sizes="733px" />
         </div>
-        <div className="absolute pointer-events-none" style={{ left: 1092, top: 321, width: 601, height: 453 }}>
-          <Image src={img("image29")} alt="" fill className="object-contain" sizes="601px" />
+        <div className="absolute pointer-events-none  " style={{ left: 1152, top: 385, width: 450, height: 400 }}>
+          <Image src={img("imageHer2")} alt="" fill className="object-cover rounded-4xl" sizes="450px" />
         </div>
 
         {/* Datos de bio, sobre la foto */}
@@ -46,15 +46,15 @@ export function Hero() {
         <Image src={img("image22")} alt="" width={189} height={129} className="absolute pointer-events-none select-none" style={{ left: 285, top: 733 }} />
         <Image src={img("image23")} alt="" width={195} height={144} className="absolute pointer-events-none select-none" style={{ left: 541, top: 668 }} />
         <Image src={img("image25")} alt="" width={83} height={83} className="absolute pointer-events-none select-none" style={{ left: 191, top: 627 }} />
-        <Image src={img("image28")} alt="" width={160} height={168} className="absolute pointer-events-none select-none" style={{ left: 607, top: 361, transform: "rotate(20.48deg)" }} />
+        <Image src={img("image28")} alt="" width={160} height={168} className="absolute pointer-events-none select-none" style={{ left: 607, top: 496, transform: "rotate(20.48deg)" }} />
 
         {/* Banner "Roles actuales" */}
-        <div className="absolute overflow-hidden rounded" style={{ left: 157, top: 1068, width: 599, height: 169 }}>
+        <div className="absolute overflow-hidden rounded" style={{ left: 62, top: 1068, width: 729, height: 169 }}>
           <Image src="/imagenes/papel_btn.png" alt="" fill className="object-cover" sizes="599px" />
         </div>
         <p className="absolute font-caveat font-bold text-[32px] text-terracotta whitespace-nowrap" style={{ left: 171, top: 1132 }}>Dirección de arte</p>
         <p className="absolute font-caveat font-bold text-[32px] text-terracotta whitespace-nowrap" style={{ left: 365, top: 1132 }}>| Diseño de producción |</p>
-        <p className="absolute font-caveat font-bold text-[32px] text-terracotta whitespace-nowrap" style={{ left: 636, top: 1133 }}>Stayling</p>
+        <p className="absolute font-caveat font-bold text-[32px] text-terracotta whitespace-nowrap" style={{ left: 636, top: 1133 }}>Styling</p>
         <Image src={img("image26")} alt="" width={149} height={160} className="absolute pointer-events-none select-none" style={{ left: 136, top: 956 }} />
         <Image src={img("image31")} alt="" width={331} height={397} className="absolute pointer-events-none select-none" style={{ left: 591, top: 901 }} />
       </FigmaCanvas>

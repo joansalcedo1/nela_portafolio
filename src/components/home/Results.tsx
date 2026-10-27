@@ -10,7 +10,7 @@ const outcomes = [
     left: 98,
     top: 346,
     width: 420,
-    height: 127,
+    height: 167,
     tone: "paper",
   },
   {
@@ -26,9 +26,9 @@ const outcomes = [
     title: "Dirección Estética y Caracterización",
     body: "Definición integral del Look & Feel y paleta cromática para +10 personajes principales y secundarios, asegurando continuidad visual e identidad dramática.",
     left: 98,
-    top: 505,
+    top: 545,
     width: 435,
-    height: 146,
+    height: 156,
     tone: "terracotta",
   },
   {
@@ -37,15 +37,15 @@ const outcomes = [
     left: 915,
     top: 505,
     width: 425,
-    height: 108,
+    height: 138,
     tone: "paper",
   },
 ];
 
 const statistics = [
-  { value: "+700", label: "horas de rodaje", left: 332, valueLeft: 402, valueWidth: 92, labelTop: 830, labelWidth: 178 },
-  { value: "+50", label: "Props creados", left: 601, valueLeft: 679, valueWidth: 69, labelTop: 837, labelWidth: 178 },
-  { value: "+3", label: "Selecciones Oficiales", left: 870, valueLeft: 949, valueWidth: 69, labelTop: 826, labelWidth: 178 },
+  { value: "+700", label: "horas de rodaje", left: 372, paperLeft: 322, valueLeft: 420, valueWidth: 92, labelTop: 830, labelWidth: 178 },
+  { value: "+50", label: "Props creados", left: 641, paperLeft: 601, valueLeft: 700, valueWidth: 69, labelTop: 837, labelWidth: 178 },
+  { value: "+3", label: "Selecciones Oficiales", left: 920, paperLeft: 870, valueLeft: 980, valueWidth: 69, labelTop: 826, labelWidth: 178 },
 ];
 
 export function Results() {
@@ -62,7 +62,7 @@ export function Results() {
         {outcomes.map((outcome) => (
           <article
             key={outcome.title}
-            className={`absolute flex items-center justify-center gap-4 p-4 shadow-[0_4px_2px_rgba(0,0,0,0.25)] ${outcome.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"}`}
+            className={`absolute flex items-center rounded-lg justify-center gap-4 p-4 shadow-[0_4px_2px_rgba(0,0,0,0.25)] ${outcome.tone === "terracotta" ? "bg-terracotta text-paper" : "bg-cream-card text-forest-muted"}`}
             style={{ left: outcome.left, top: outcome.top, width: outcome.width, height: outcome.height }}
           >
             <h3 className="w-[155px] shrink-0 font-caveat text-[24px] font-bold leading-tight">
@@ -77,7 +77,7 @@ export function Results() {
           alt="Ilustración de un sol con rostro"
           width={256}
           height={274}
-          className="absolute left-[621px] top-[344px] h-[274px] w-[256px] object-contain"
+          className="absolute left-[541px] top-[344px] h-[300px] w-[356px] object-contain"
         />
 
         {statistics.map((stat) => (
@@ -87,8 +87,8 @@ export function Results() {
               alt=""
               width={237}
               height={229}
-              className="absolute h-[229px] w-[237px]"
-              style={{ left: stat.left }}
+              className="absolute h-[250px] w-[270px]"
+              style={{ left: stat.paperLeft }}
             />
             <p
               className="absolute top-[50px] font-caveat text-[48px] font-bold leading-none text-forest-muted"

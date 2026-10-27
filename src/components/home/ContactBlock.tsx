@@ -1,26 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useState,FormEvent } from "react";
 import Image from "next/image";
 import { FigmaCanvas } from "../ui/FigmaCanvas";
 import { InstagramIcon, WhatsAppIcon } from "../ui/icons";
 import { contactInfo } from "@/lib/data";
-
 const img = (name: string) => `/imagenes/figma/cta-${name}.png`;
+const img2 = (name: string) => `/imagenes/figma/cta/${name}.png`;
+
 
 export function ContactBlock() {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Nuevo proyecto de ${nombre || "un cliente"}`);
-    const body = encodeURIComponent(
-      `Nombre: ${nombre}\nEmail: ${email}\n\n${mensaje}`
-    );
-    window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
+    setStatus('submitting');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // El "/ajax/" es crítico para evitar la redirección por defecto de FormSubmit
+    const endpoint = 'https://formsubmit.co/ajax/daniela.hurtadoa07@gmail.com';
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
   };
+
 
   return (
     <section id="contacto" className="bg-[#fcf8f4] relative overflow-hidden">
@@ -62,6 +87,7 @@ export function ContactBlock() {
             type="text"
             required
             value={nombre}
+            name="nombre"
             onChange={(e) => setNombre(e.target.value)}
             placeholder="Nombre *"
             className="absolute bg-cream-card border-b-4 border-terracotta font-itim text-[21px] text-terracotta text-center placeholder:text-terracotta/70 px-[21px] outline-none"
@@ -71,6 +97,7 @@ export function ContactBlock() {
             type="email"
             required
             value={email}
+            name="email"
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email *"
             className="absolute bg-cream-card border-b-4 border-terracotta font-itim text-[21px] text-terracotta text-center placeholder:text-terracotta/70 px-[21px] outline-none"
@@ -79,6 +106,7 @@ export function ContactBlock() {
           <textarea
             required
             value={mensaje}
+            name="mensaje"
             onChange={(e) => setMensaje(e.target.value)}
             placeholder="Tu idea va aquí (mensaje)"
             className="absolute bg-cream-card border-b-4 border-terracotta font-itim text-[21px] text-terracotta text-center placeholder:text-terracotta/70 px-[21px] pt-[21px] outline-none resize-none"
@@ -86,10 +114,11 @@ export function ContactBlock() {
           />
           <button
             type="submit"
+            disabled={status === 'submitting'}
             className="absolute bg-terracotta font-caveat font-bold text-paper hover:bg-terracotta-hover transition-colors"
             style={{ left: 1035, top: 885, width: 660, height: 84, fontSize: 32 }}
           >
-            ¡Hagamos que esa visión cobra vida!
+            {status === 'submitting' ? 'Enviando...' : '¡Hagamos que esa visión cobra vida!'}
           </button>
         </form>
 
@@ -119,9 +148,9 @@ export function ContactBlock() {
         <Image src={img("image48")} alt="" width={164} height={175} className="absolute pointer-events-none select-none" style={{ left: 816, top: 549 }} />
         <Image src={img("image49")} alt="" width={169} height={117} className="absolute pointer-events-none select-none" style={{ left: 259, top: 1021 }} />
         <Image src={img("image50")} alt="" width={232} height={472} className="absolute pointer-events-none select-none" style={{ left: 1373, top: 960, transform: "rotate(75.45deg)" }} />
-        <Image src={img("image51")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 708, top: 980 }} />
-        <Image src={img("image51")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 833, top: 857 }} />
-        <Image src={img("image51")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 816, top: 961 }} />
+        <Image src={img2("estrella")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 708, top: 980 }} />
+        <Image src={img2("estrella")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 833, top: 857 }} />
+        <Image src={img2("estrella")} alt="" width={103} height={100} className="absolute pointer-events-none select-none" style={{ left: 816, top: 961 }} />
         <Image src={img("image40")} alt="" width={217} height={89} className="absolute pointer-events-none select-none" style={{ left: 1180, top: 548 }} />
       </FigmaCanvas>
     </section>

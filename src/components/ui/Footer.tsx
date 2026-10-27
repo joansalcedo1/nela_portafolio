@@ -25,7 +25,7 @@ export function Footer() {
           className="absolute object-cover"
           style={{ left: 730, top: 66, width: 710, height: 455, transform: "scaleX(-1)" }}
         />
-        <p
+        {/*<p
           className="absolute text-center font-caveat text-[36px] leading-normal text-paper"
           style={{ left: 529, top: 121, width: 375 }}
         >
@@ -62,12 +62,12 @@ export function Footer() {
             height={71}
             className="h-full w-full object-cover"
           />
-        </a>
+        </a>*/}
         <p
-          className="absolute text-center font-caveat text-[18px] font-bold leading-normal text-white"
-          style={{ left: 665, top: 434, width: 73 }}
+          className="absolute text-center font-caveat text-[30px] font-bold leading-normal text-white"
+          style={{ left: 665, top: 200, width: 73 }}
         >
-          NELAARTE<br />2026
+          NELAARTE<br />©2026
         </p>
       </FigmaCanvas>
     </footer>

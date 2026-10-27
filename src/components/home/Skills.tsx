@@ -9,31 +9,31 @@ const skillImage = (name: string) => `/imagenes/figma/habilidades/${name}`;
 const cards = [
   {
     id: "#01",
-    title: "Principal aprendizaje",
-    description: "La dirección de arte necesita más que una buena idea: exige observación, preparación, gestión de recursos, comunicación y capacidad de adaptación en rodaje.",
-    icon: "image74.png",
-    tone: "cream",
+    title: "De la idea a la realidad",
+    description: "Aprendí a transformar conceptos e ideas en propuestas visuales, entendiendo cómo cada elemento, desde la utilería hasta el vestuario y la ambientación, aporta a la construcción de una historia.",
+    shape: "card_shape0.jpg",
+    tone: "terracotta",
   },
   {
     id: "#02",
-    title: "Anticiparme a las necesidades de producción",
-    description: "Coordinar vestuario, materiales y elementos de arte con anticipación me enseñó a prever alternativas cuando los recursos o las condiciones cambian.",
-    icon: "image80.png",
-    tone: "terracotta",
-  },
-  {
-    id: "#03",
-    title: "Responder a los cambios",
-    description: "Resolver solicitudes en poco tiempo me enseñó a buscar materiales con rapidez y proponer alternativas sin perder de vista las necesidades visuales.",
-    icon: "image13.png",
+    title: "Organización y gestión de recursos",
+    description: "Fortalecí mi capacidad para planear, organizar materiales y administrar presupuestos, buscando alternativas creativas que permitieran aprovechar los recursos sin perder la intención artística.",
+    shape: "card_shape1.jpg",
     tone: "cream",
   },
   {
-    id: "#04",
-    title: "Dinámica profesional de rodaje",
-    description: "La práctica me enseñó a revisar cada detalle desde cámara: una propuesta debe funcionar tanto en el espacio como dentro del encuadre.",
-    icon: "image77.png",
+    id: "#03",
+    title: "Adaptación y creatividad",
+    description: "Entendí que no todo sale como se planea. Aprendí a responder a los imprevistos, encontrar soluciones y adaptar las propuestas a las necesidades de cada proyecto.",
+    shape: "card_shape2.jpg",
     tone: "terracotta",
+  },
+  {
+    id: "#04",
+    title: "Trabajo en equipo",
+    description: "Aprendí a comunicar mis ideas, escuchar otras perspectivas y trabajar de la mano con diferentes áreas de producción para construir propuestas que funcionaran tanto creativa como técnicamente.",
+    shape: "card_shape3.jpg",
+    tone: "cream",
   },
 ];
 
@@ -54,14 +54,13 @@ export function Skills() {
           Habilidades
         </h2>
         <p className="absolute left-[487px] top-[212px] h-[56px] w-[874px] font-itim text-[16px] leading-normal text-forest-muted">
-          Durante mi proceso de práctica profesional en la productora audiovisual autentica, enfrenté retos significativos que me permitieron crecer como directora de arte. Estos desafíos abarcaron tanto el bla bla bla bla comobla bla bla bla y bla bla bla bla.
+          Durante mis prácticas en Auténtica descubrí que trabajar en arte va mucho más allá de tener buenas ideas. Aprendí a llevarlas a la realidad, a trabajar con los recursos disponibles y a adaptarme a los retos de cada producción. Fue una experiencia que me permitió desarrollar nuevas habilidades y entender mejor cómo funciona el trabajo creativo dentro de un equipo audiovisual.
         </p>
 
         {cards.map((card, index) => {
           const isActive = activeId === card.id;
           const isTerracotta = card.tone === "terracotta";
-          const outerTone = isTerracotta ? "bg-terracotta" : "bg-cream-card";
-          const outerText = isTerracotta ? "text-paper" : "text-terracotta";
+          const outerText = isTerracotta ? "text-terracotta" : " text-paper";
           const innerTone = isTerracotta ? "bg-cream-card text-forest-muted" : "bg-terracotta text-paper";
 
           return (
@@ -73,7 +72,7 @@ export function Skills() {
               aria-controls={`skill-description-${card.id.slice(1)}`}
               aria-label={`${card.id} ${card.title}${isActive ? ", mostrar cara frontal" : ", mostrar descripción"}`}
               onClick={() => setActiveId((currentId) => currentId === card.id ? null : card.id)}
-              className="absolute w-[303px] cursor-pointer border-0 bg-transparent p-0 text-left [perspective:1000px] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-forest-muted"
+              className="absolute w-[303px] cursor-pointer border-0 bg-transparent p-0 text-left [perspective:1000px] focus-visible:outline-none focus-visible:ring-4"
               style={{ left: cardPositions[index].left, top: cardPositions[index].top, height: cardPositions[index].height }}
             >
               <span
@@ -81,60 +80,46 @@ export function Skills() {
               >
                 <span
                   aria-hidden={isActive}
-                  className={`absolute inset-0 rounded-[12px] [backface-visibility:hidden] ${outerTone}`}
+                  className="absolute inset-0 overflow-hidden rounded-[12px] [backface-visibility:hidden]"
                 >
-                  <span className={`absolute left-[28px] top-[38px] font-caveat text-[25px] leading-none ${outerText}`}>
+                  <Image
+                    src={skillImage(card.shape)}
+                    alt=""
+                    fill
+                    sizes="303px"
+                    className="object-fill"
+                  />
+                  <span className={`absolute left-[28px] top-[38px] font-caveat text-[25px] leading-none text-terracotta`}>
                     {card.id}
                   </span>
-                  <Image
-                    src={skillImage(card.icon)}
-                    alt=""
-                    width={62}
-                    height={60}
-                    className="absolute right-[17px] top-[25px] h-[60px] w-[62px] object-contain"
-                  />
-                  <span className={`absolute left-[24px] top-1/2 flex h-[98px] w-[255px] -translate-y-1/2 items-center justify-center text-center font-itim text-[20px] leading-normal ${outerText}`}>
+                  <span className={`absolute left-[24px] top-[70%] flex h-[18%] w-[255px] -translate-y-1/2 items-center justify-center text-center font-itim text-[20px] leading-normal text-terracotta`}>
                     {card.title}
                   </span>
-                  <Image
-                    src={skillImage(card.icon)}
-                    alt=""
-                    width={62}
-                    height={60}
-                    className="absolute bottom-[12px] left-[17px] h-[60px] w-[62px] object-contain"
-                  />
-                  <span className={`absolute bottom-[32px] right-[22px] font-caveat text-[25px] leading-none ${outerText}`}>
+                  <span className={`absolute bottom-[32px] right-[22px] font-caveat text-[25px] leading-none text-terracotta`}>
                     {card.id}
                   </span>
                 </span>
 
                 <span
                   aria-hidden={!isActive}
-                  className={`absolute inset-0 rounded-[12px] [backface-visibility:hidden] [transform:rotateY(180deg)] ${outerTone}`}
+                  className="absolute inset-0 overflow-hidden rounded-[12px] [backface-visibility:hidden] [transform:rotateY(180deg)]"
                 >
+                  <Image
+                    src={skillImage(isTerracotta ? "card-shape.svg" : "card-shape-terracotta.svg")}
+                    alt=""
+                    fill
+                    sizes="303px"
+                    className="object-fill"
+                  />
                   <span className={`absolute left-[28px] top-[38px] font-caveat text-[25px] leading-none ${outerText}`}>
                     {card.id}
                   </span>
-                  <Image
-                    src={skillImage(card.icon)}
-                    alt=""
-                    width={62}
-                    height={60}
-                    className="absolute right-[17px] top-[25px] h-[60px] w-[62px] object-contain"
-                  />
                   <span
                     id={`skill-description-${card.id.slice(1)}`}
-                    className={`absolute left-5 top-1/2 flex h-[242px] w-[263px] -translate-y-1/2 items-center justify-center rounded-[8px] px-4 py-5 text-center font-itim text-[16px] leading-snug ${innerTone}`}
+                    className={`absolute left-5 top-1/2 flex h-[242px] w-[263px] -translate-y-1/2 items-center justify-center rounded-[8px] px-4 py-5 text-center font-itim text-[16px] leading-snug shadow-[0_4px_8px_rgba(0,0,0,0.18)] ${innerTone}`}
                   >
                     {card.description}
                   </span>
-                  <Image
-                    src={skillImage(card.icon)}
-                    alt=""
-                    width={62}
-                    height={60}
-                    className="absolute bottom-[12px] left-[17px] h-[60px] w-[62px] object-contain"
-                  />
                   <span className={`absolute bottom-[32px] right-[22px] font-caveat text-[25px] leading-none ${outerText}`}>
                     {card.id}
                   </span>
