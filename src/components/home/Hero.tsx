@@ -3,37 +3,73 @@
 import Image from "next/image";
 import { FigmaCanvas } from "../ui/FigmaCanvas";
 import { contactInfo } from "@/lib/data";
+import { InstagramIcon, WhatsAppIcon } from "../ui/icons";
 
 const img = (name: string) => `/imagenes/figma/hero-${name}.png`;
 
 export function Hero() {
   return (
     <section id="sobre-mi" className="bg-bg-base relative">
-      <div className="mx-auto flex max-w-xl flex-col gap-6 px-5 pb-10 pt-20 min-[1280px]:hidden">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-xl shadow-lg">
-          <Image src={img("carta-fondo")} alt="Nela en set de rodaje" fill className="object-cover" sizes="(max-width: 640px) 100vw, 576px" priority />
-          <Image src={img("imageHer2")} alt="" fill className="pointer-events-none object-contain p-8" sizes="(max-width: 640px) 100vw, 576px" />
-        </div>
-        <div className="text-center">
-          <p className="font-caveat text-3xl text-forest-muted">¡Hola! mi nombre es</p>
-          <h1 className="font-caveat text-7xl font-bold leading-none text-forest-muted">Nela</h1>
-          <p className="mt-2 font-caveat text-3xl font-bold text-forest-muted">Artista visual</p>
-        </div>
-        <dl className="grid grid-cols-2 gap-3 rounded-xl bg-cream-card p-4 font-itim text-forest-muted">
-          <dt>Ubicada en:</dt><dd className="font-bold">{contactInfo.availability}</dd>
-          <dt>Estudios:</dt><dd className="font-bold">Profesional en Cine</dd>
-          <dt>Especialidad:</dt><dd className="font-bold">Estudios de género</dd>
-          <dt>Trayectoria:</dt><dd className="font-bold">+{contactInfo.experienceYears} años</dd>
-        </dl>
-        <div className="rounded-xl bg-[url('/imagenes/papel_btn.png')] bg-cover px-4 py-5 text-center font-caveat text-2xl font-bold text-terracotta">
-          <p className="mb-2">Roles actuales</p>
-          <p>Dirección de arte · Diseño de producción · Styling</p>
+      <div className="mx-auto max-w-[430px] px-3 pb-8 pt-20 min-[1280px]:hidden">
+        <div className="relative mx-auto aspect-[0.73/1] w-full">
+          <Image
+            src={img("carta-fondo")}
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 640px) calc(100vw - 24px), 430px"
+            className="pointer-events-none object-fill"
+          />
+          <div className="absolute inset-x-[17%] bottom-[12%] top-[11%] flex flex-col items-center text-center text-forest-muted">
+            <div className="relative h-[30%] w-full shrink-0 overflow-hidden rounded-lg shadow-md">
+              <Image
+                src={img("imageHer2")}
+                alt="Nela, artista visual"
+                fill
+                sizes="(max-width: 640px) 66vw, 284px"
+                className="object-cover object-[center_38%]"
+              />
+            </div>
+            <div className="mt-2 leading-none">
+              <p className="font-caveat text-[clamp(15px,4.5vw,20px)]">¡Hola! Soy</p>
+              <h1 className="font-caveat text-[clamp(36px,10vw,48px)] font-bold">Nela</h1>
+              <p className="font-caveat text-[clamp(16px,4.5vw,21px)] font-bold">Artista visual</p>
+            </div>
+            <dl className="mt-1 flex w-full flex-col rounded-lg bg-bg-base/80 px-1 py-1 font-itim text-[clamp(10px,2.9vw,13px)] leading-tight">
+              <div className="flex justify-center gap-1"><dt className="font-bold">Ubicada en:</dt><dd>{contactInfo.availability}</dd></div>
+              <div className="flex justify-center gap-1"><dt className="font-bold">Estudios:</dt><dd>Cine · Género</dd></div>
+              <div className="flex justify-center gap-1"><dt className="font-bold">Trayectoria:</dt><dd>+{contactInfo.experienceYears} años</dd></div>
+            </dl>
+            <p className="mt-1 w-[130%] font-caveat text-[clamp(12px,3.5vw,16px)] font-bold leading-tight text-terracotta">
+              Dirección de arte · Diseño de producción · Styling
+            </p>
+            <div className="mt-auto flex items-center justify-center gap-3 pb-1">
+              <a
+                href={`https://instagram.com/${contactInfo.instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram de Nela"
+                className="flex size-9 items-center justify-center rounded-full bg-terracotta text-paper transition-transform hover:scale-110"
+              >
+                <InstagramIcon className="size-5" />
+              </a>
+              <a
+                href={`https://wa.me/${contactInfo.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contactar a Nela por WhatsApp"
+                className="flex size-9 items-center justify-center rounded-full bg-terracotta text-paper transition-transform hover:scale-110"
+              >
+                <WhatsAppIcon className="size-5" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div className="hidden min-[1280px]:block">
       <FigmaCanvas width={1920} height={1365}>
         {/* Foto real + marco decorativo */}
-        <div className="absolute rounded-lg overflow-hidden" style={{ left: 1012, top: 253, width: 733, height: 988 }}>
+        <div id="marco_decorativo" className="absolute rounded-lg overflow-hidden" style={{ left: 1012, top: 253, width: 733, height: 988 }}>
           <Image src={img("carta-fondo")} alt="Nela en set de rodaje" fill className="object-cover" sizes="733px" />
         </div>
         <div className="absolute pointer-events-none  " style={{ left: 1152, top: 385, width: 450, height: 400 }}>
